@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="item">
+      <i id="loader"></i>
+    </div>
+    <div id="side-weather-search">
+      <p id="city"></p>
+      <ul id="city-weather-item-list">
+        <li id="city-current-temperature">--</li>
+        <li id="city-current-humidity">--</li>
+        <li id="city-current-pressure">--</li>
+        <li id="city-current-wind-speed">--</li>
+      </ul>
+      <div class="input-city">
+        <input type="text" placeholder="Type any city!" id="input-city" value=""/>
+        <button id="get-city-weather">Submit</button>
+      </div>
+    </div>
+    <main id="current-weather-deetails">
+      <h1>The best weather app!</h1>
+      <ul id="weather-item-list">
+        <li id="current-temperature">--</li>
+        <li id="current-humidity">--</li>
+        <li id="current-pressure">--</li>
+        <li id="current-wind-speed">--</li>
+      </ul>
+      <button id="get-weather">Get Current Weather!</button>
+    </main>
+    <footer>
+      <p id="weather-summary"></p>
+    </footer>
+    <script src="weather.js"></script>
+  </body>
+</html>
