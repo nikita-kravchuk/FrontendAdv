@@ -143,7 +143,6 @@ footer{
 
 #side-weather-search input{
     width: 100px;
-    margin: 15px;
     background: none;
     border-radius: 5px;
     border: 1px solid #754e46;
@@ -163,8 +162,25 @@ footer{
     color: #754e46;
 } 
 
+.input-city {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
 #city {
     font-size: 20px;
     color: #754e46;
     font-weight: 600;
+}
+
+#side-weather-search button:last-child {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.mic:focus {
+    filter: invert(61%) sepia(60%) saturate(447%) hue-rotate(182deg) brightness(87%) contrast(89%);
 }

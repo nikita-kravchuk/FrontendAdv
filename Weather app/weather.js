@@ -21,7 +21,8 @@ var humidity = document.getElementById("current-humidity"),
   cityTemperature = document.getElementById("city-current-temperature"),
   cityWindSpeed = document.getElementById("city-current-wind-speed"),
   getCityWeather = document.getElementById("get-city-weather"),
-  inputCity = document.getElementById("input-city");
+  inputCity = document.getElementById("input-city"),
+  micBtn = document.getElementById("mic");
 
 function getWeatherByCoordinates() {
   if (navigator.geolocation) {
@@ -62,7 +63,8 @@ function displayData(data) {
   humidity.innerHTML = "Humidity: " + data.main.humidity + "%";
   pressure.innerHTML = "Pressure: " + data.main.pressure + " mb";
   windSpeed.innerHTML = "Wind Speed: " + data.wind.speed + " km/h";
-  weatherSummary.innerHTML = "Your location " + data.name + " and sky is " + data.weather[0].main;
+  weatherSummary.innerHTML =
+    "Your location " + data.name + " and sky is " + data.weather[0].main;
   console.log(data);
 }
 
@@ -79,34 +81,62 @@ function done() {
 getWeatherButton.addEventListener("click", getWeatherByCoordinates);
 
 function getWeather(city) {
-    var city = document.getElementById("input-city").value;
-    fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
-        city +
-        "&appid=" +
-        "acb900ecada3ce6e66d45d680e02969e" +
-        "&units=" +
-        "metric"
-    )
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        displayCityData(data);
-        console.log(this)
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  }
+  var city = document.getElementById("input-city").value;
+  fetch(
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+      city +
+      "&appid=" +
+      "acb900ecada3ce6e66d45d680e02969e" +
+      "&units=" +
+      "metric"
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      displayCityData(data);
+      console.log(this);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
 
-  function displayCityData(data) {
-    cityTemperature.innerHTML = "Temperature: " + data.main.temp + "℃";
-    cityHumidity.innerHTML = "Humidity: " + data.main.humidity + "%";
-    cityPressure.innerHTML = "Pressure: " + data.main.pressure + " mb";
-    cityWindSpeed.innerHTML = "Wind Speed: " + data.wind.speed + " km/h";
-    city.innerHTML = document.getElementById("input-city").value;
-    console.log(data);
-  }
+function displayCityData(data) {
+  cityTemperature.innerHTML = "Temperature: " + data.main.temp + "℃";
+  cityHumidity.innerHTML = "Humidity: " + data.main.humidity + "%";
+  cityPressure.innerHTML = "Pressure: " + data.main.pressure + " mb";
+  cityWindSpeed.innerHTML = "Wind Speed: " + data.wind.speed + " km/h";
+  city.innerHTML = document.getElementById("input-city").value;
+  console.log(data);
+}
 
-  getCityWeather.addEventListener("click", getWeather);
+getCityWeather.addEventListener("click", getWeather);
+
+
+window.SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+var recognition = new SpeechRecognition();
+recognition.lang = "en-US";
+recognition.interimResults = true;
+
+recognition.addEventListener('result', function (event) {
+  inputCity.value = Array.from(event.results)
+    .map(function (result) {
+      return result[0];
+    })
+    .map(function (result) {
+      return result.transcript;
+    })
+    .join("");
+
+  if (event.results[0].isFinal) {
+    inputCity.value = result[0].transcript;
+  }
+});
+
+micBtn.onclick = () => {
+  recognition.start();
+};
+
