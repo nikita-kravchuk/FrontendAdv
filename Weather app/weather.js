@@ -136,7 +136,12 @@ recognition.addEventListener('result', function (event) {
   }
 });
 
+function addCol (micBtn) {
+  micBtn.classList.add('mic')
+}
+
 micBtn.onclick = () => {
+  addCol(micBtn);
   recognition.start();
 };
 
