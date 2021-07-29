@@ -14,10 +14,10 @@
       <header>
         <h1 id="title">2048</h1>
         <section class="results">
-            <div class="score">
-                <h2>Score</h2>
-                <div id="scoreResult">({totalScore})</div>
-                </div>
+          <div class="score">
+            <h2>Score</h2>
+            <div id="scoreResult">({totalScore})</div>
+          </div>
           <div id="scoreResult">({bestScore})</div>
           <div class="best">
             <h2>Best</h2>
@@ -29,12 +29,17 @@
 
     <!--MATRIX TEMPLATE-->
     <script type="text/html" id="matrixTemplate">
-        <div>
-            {{matrix}}
-        </div>
-        <div id="buttonBlock">
-            <button id="newGameBtn">New Game</button>
-        </div>
+      <div>{{matrix}}</div>
+      <div id="buttonBlock">
+        <button id="newGameBtn">New Game</button>
+      </div>
     </script>
+
+    <script src="./helpers/utils.js"></script>
+    <script src="./models/summaryModel.js"></script>
+    <script src="./views/summaryView.js"></script>
+    <script src="./models/matrixModel.js"></script>
+    <script src="./views/matrixView.js"></script>
+    <script src="./views/appView.js"></script>
   </body>
 </html>
