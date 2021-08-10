@@ -3,4 +3,9 @@ function SummaryModel() {
         totalScore: 0,
         bestScore: 0
     }
+
+    var instance = this;
+    SummaryModel = function () {
+        return instance;
+    }
 }
